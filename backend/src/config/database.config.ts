@@ -1,9 +1,11 @@
-import mongoose from "mongoose";
+import { PrismaClient } from "../generated/prisma";
 import { Env } from "./env.config";
+
+const prisma = new PrismaClient();
 
 const connectDatabase = async () => {
   try {
-    await mongoose.connect(Env.MONGO_URI);
+    await prisma.$connect();
     console.log("Database connected");
   } catch (error) {
     console.error("Database connection error:", error);
@@ -12,3 +14,4 @@ const connectDatabase = async () => {
 };
 
 export default connectDatabase;
+export { prisma };
