@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  avatar    String?  // Nullable string for URL or null
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  chatsAsCreator Chat[] @relation("CreatedBy")
+  chatParticipants Chat[] @relation("ChatParticipants")
+  messagesSent Message[]
+  repliesTo    Message[] @relation("RepliesTo")
+
+  @@map("users")
+}
+
+model Chat {
+  id          String   @id @default(uuid())
+  isGroup     Boolean  @default(false)
+  groupName   String?  // Nullable if not a group
+  createdById String
+  lastMessageId String? // Nullable if no messages yet
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  createdBy User         @relation("CreatedBy", fields: [createdById], references: [id])
+  participants User[]    @relation("ChatParticipants")
+  lastMessage Message?   @relation(fields: [lastMessageId], references: [id])
+
+  @@map("chats")
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  content   String?
+  image     String?
+  replyToId String? // Nullable for self-referencing relation
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  chatId String
+  senderId String
+
+  chat       Chat           @relation(fields: [chatId], references: [id])
+  sender     User           @relation(fields: [senderId], references: [id])
+  replyTo    Message?       @relation("RepliesTo", fields: [replyToId], references: [id])
+
+  @@map("messages")
+}

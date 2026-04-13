@@ -3,7 +3,7 @@ import { useAuth } from "./hooks/use-auth";
 import AppRoutes from "./routes";
 import { Spinner } from "./components/ui/spinner";
 import Logo from "./components/logo";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import { isAuthRoute } from "./routes/routes";
 
 function App() {

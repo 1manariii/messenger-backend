@@ -15,7 +15,7 @@ import Logo from "@/components/logo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const SignIn = () => {
   const { login, isLoggingIn } = useAuth();

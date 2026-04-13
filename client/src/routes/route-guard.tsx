@@ -1,5 +1,5 @@
 import { useAuth } from "@/hooks/use-auth";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router";
 
 interface Props {
   requireAuth?: boolean;

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
 const useChatId = () => {
   const params = useParams<{ chatId?: string }>();

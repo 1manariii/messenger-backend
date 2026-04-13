@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useChat } from "@/hooks/use-chat";
 import { Spinner } from "../ui/spinner";
 import ChatListItem from "./chat-list-item";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useAuth } from "@/hooks/use-auth";
 import ChatListHeader from "./chat-list-header";
 import { useSocket } from "@/hooks/use-socket";

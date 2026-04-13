@@ -2,7 +2,7 @@ import AppWrapper from "@/components/app-wrapper";
 import ChatList from "@/components/chat/chat-list";
 import useChatId from "@/hooks/use-chat-id";
 import { cn } from "@/lib/utils";
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 
 const AppLayout = () => {
   const chatId = useChatId();
